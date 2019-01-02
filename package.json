@@ -1,0 +1,17 @@
+{
+  "name": "obsrvble",
+  "version": "1.0.3",
+  "author": {
+    "name": "Teddy Gandon"
+  },
+  "description": "Just a simple observer / observable toolkit",
+  "keywords": [
+    "observer",
+    "observable"
+  ],
+  "main": "observable.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeddyGandon/obsrvble"
+  }
+}
