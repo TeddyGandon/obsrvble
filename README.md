@@ -1,5 +1,5 @@
 # OBSRVBLE
-A simple built-in observer tollkit for small JS projects
+A simple built-in observer toolkit for small JS projects
 
 # API doc
 
@@ -56,3 +56,6 @@ foo.subscribe(new Observer(
     }
 ));
 ```
+
+# Why?
+Because. I did not found any simple KISS observer / observable toolkit on NPM. This is my 🎁 to the community, cheers!
