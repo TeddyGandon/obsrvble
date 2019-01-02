@@ -1,6 +1,10 @@
 # OBSRVBLE
 A simple built-in observer toolkit for small JS projects
 
+# Usage
+
+`npm i obsrvble`
+
 # API doc
 
 ## Observable
