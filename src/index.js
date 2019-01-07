@@ -1,49 +1,79 @@
-import { Observable } from "obsrvble";
-
 /**
- * A simple state manager. Used to manage a global state in an app. This state
- * manager is an Observable object, so you can use Observers to subscribe to
- * a change in the stored properties.
+ * Main observable class. Extends it to have observer pattern.
  */
-export class Statemgr extends Observable {
+export class Observable {
 
-  /**
-   * The constructor
-   */
   constructor() {
-    super();
-    this._state = {};
+    this._observers = [];
   }
 
   /**
-   * Stores a property into the state manager. Call 
-   * @param {String} property 
-   * @param {*} value 
+   * Subcribe an observer to the observable object
+   * @param {Observer} observer The observer
    */
-  set(property, value) {
-    // Only set the property when the value changes
-    if (this.get(property) === value) {
-      return;
-    }
-
-    // Get the old value
-    const oldValue = this.get(property);
-
-    // Set the new value
-    this._state[property] = value;
-
-    // Dispatch event to obervers
-    this.dispatch(property, oldValue, this.get(property));
+  subscribe(observer) {
+    this._observers.push(observer);
   }
 
   /**
-   * Returns a stored property
-   * @param {String} property 
+   * Unsubscribe an oberver from the observable object
+   * @param {Observer} observer The observer
    */
-  get(property) {
-    return this._state[property];
+  unsubscribe(observer) {
+    this._observers = this._observers.filter(observerToCheck => observerToCheck !== observer);
+  }
+
+  /**
+   * Unsubscribe all the observers from the observable object
+   */
+  unsubscribeAll() {
+    this._observers = [];
+  }
+
+  /**
+   * Dispatch an event and resolve the concerned observers
+   * @param {String} event The event
+   * @param  {...any} d Anyting you want - that will be passed in the observer resolve metod
+   */
+  dispatch(event, ...d) {
+    this._observers
+      .filter(observer => observer.event === event)
+      .map(observer => observer._resolve(d));
   }
 
 }
 
-export default new Statemgr(); // Act as a service
+/**
+ * Main observer class, used in the `subscribe` methods of an `Observable`.
+ */
+export class Observer {
+
+  /**
+   * Creates a new observer
+   * @param {String} event The event the observer should listen to
+   * @param {Function} resolver The resolver method the observer should invoke when resolved
+   */
+  constructor(
+    event,
+    resolver
+  ) {
+    this._event = event;
+    this._resolver = resolver;
+  }
+
+  /**
+   * Resolve method called from the observable
+   * @param {*} d 
+   */
+  _resolve(d) {
+    this._resolver(d);
+  }
+
+  /**
+   * The event associated with the observer
+   */
+  get event() {
+    return this._event;
+  }
+
+}
