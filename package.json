@@ -1,6 +1,6 @@
 {
   "name": "obsrvble",
-  "version": "1.0.4",
+  "version": "1.1.2",
   "author": {
     "name": "Teddy Gandon"
   },
@@ -9,9 +9,15 @@
     "observer",
     "observable"
   ],
-  "main": "observable.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/TeddyGandon/obsrvble"
+  },
+  "devDependencies": {
+    "rollup": "^1.0.2"
+  },
+  "scripts": {
+    "build": "rollup -c"
   }
 }

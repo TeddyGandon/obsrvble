@@ -1,5 +1,5 @@
 # OBSRVBLE
-A simple built-in observer toolkit for small JS projects
+A simple built-in observer toolkit for small JS projects.
 
 # Usage
 
@@ -43,7 +43,7 @@ import {Observable} from "obsrvble";
 
 export class Foo extends Observable {
     callThisToDispatch(bar) {
-        this.dispatch("myEvent");
+        this.dispatch("myEvent", bar);
     }
 }
 ```
@@ -57,8 +57,10 @@ foo.subscribe(new Observer(
     'myEvent',
     params => {
         // Do something here
+        console.log(params[0]); // hello!
     }
 ));
+foo.callThisToDispatch("hello!");
 ```
 
 # Why?
