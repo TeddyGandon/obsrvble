@@ -1,3 +1,4 @@
+![Logo](https://raw.githubusercontent.com/TeddyGandon/icons/master/ob.svg?sanitize=true)
 # OBSRVBLE
 A simple built-in observer toolkit for small JS projects.
 
